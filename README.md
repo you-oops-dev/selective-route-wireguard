@@ -6,9 +6,13 @@ Table = off
 PostUp = /usr/local/bin/selective_route.sh up %i
 PreDown = /usr/local/bin/selective_route.sh down %i
 ```
+You can specify your own DNS, but they must be specified!
+
 Copy config to ```/etc/wireguard/```
 
 Copy script to ```/usr/local/bin/```
+
+```sudo chmod -c 755 /usr/local/bin/selective_route.sh```
 
 And start systemD service or enable
 
