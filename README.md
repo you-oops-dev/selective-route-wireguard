@@ -8,6 +8,8 @@ PreDown = /usr/local/bin/selective_route.sh down %i
 ```
 You can specify your own DNS, but they must be specified!
 
+***Do not use*** the VPN gateway as a DNS server this will not be useful.
+
 Copy config to ```/etc/wireguard/```
 
 Copy script to ```/usr/local/bin/```
