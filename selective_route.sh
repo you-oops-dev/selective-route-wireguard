@@ -13,16 +13,16 @@ if [[ ! $(command -v wget) ]]; then
     exit 1
 fi
 
-
-if [[ ! -e $2 ]]; then
-    export DEVICE_VPN=$2
-    cat /etc/wireguard/${DEVICE_VPN}.conf | grep -E "DNS" | awk '{print $3}' | sed 's/,/\n/g' > /tmp/dns_wireguard_${DEVICE_VPN}.conf
+if [[ ! -e $2 ]] | [[ ! -e $3 ]]; then
+    export PROTO_VPN=$2
+    export DEVICE_VPN=$3
+    cat /etc/${PROTO_VPN}/${DEVICE_VPN}.conf | grep -E "DNS" | awk '{print $3}' | sed 's/,/\n/g' > /tmp/dns_${PROTO_VPN}_${DEVICE_VPN}.conf
 else
     if [[ $LANG == en_US.UTF-8 ]]; then
-        echo "Set the 2rd argument in PostUP and PreDown"
+        echo "Set the 2rd and 3rd argument in PostUP and PreDown"
     else
         if [[ $LANG == ru_RU.UTF-8 ]]; then
-            echo "Установите 2-ой аргумент в PostUP и в PreDown"
+            echo "Установите 2-ой и 3-ий аргумент в PostUP и в PreDown"
         fi
     fi
     exit 1
@@ -63,7 +63,7 @@ function prepare_list {
 }
 
 function checking_pre_up2 {
-    for DNS_IN_VPN in $(cat /tmp/dns_wireguard_${DEVICE_VPN}.conf | sort -u); do route add ${DNS_IN_VPN} dev ${DEVICE_VPN}; done
+    for DNS_IN_VPN in $(cat /tmp/dns_${PROTO_VPN}_${DEVICE_VPN}.conf | sort -u); do route add ${DNS_IN_VPN} dev ${DEVICE_VPN}; done
     if [[ -f /tmp/32.txt ]]; then
         if [[ $(cat -n /tmp/32.txt) != 0 ]]; then
             for mask32 in $(cat /tmp/32.txt); do route add ${mask32} dev $DEVICE_VPN; done
@@ -114,8 +114,8 @@ function checking_pre_up2 {
 }
 
 function checking_pre_down {
-    for DNS_IN_VPN in $(cat /tmp/dns_wireguard_${DEVICE_VPN}.conf | sort -u); do route del ${DNS_IN_VPN} dev ${DEVICE_VPN}; done
-    rm -fv /tmp/dns_wireguard_${DEVICE_VPN}.conf
+    for DNS_IN_VPN in $(cat /tmp/dns_${PROTO_VPN}_${DEVICE_VPN}.conf | sort -u); do route del ${DNS_IN_VPN} dev ${DEVICE_VPN}; done
+    rm -fv /tmp/dns_${PROTO_VPN}_${DEVICE_VPN}.conf
     if [[ -f /tmp/sum.txt ]]; then
         if [[ $(cat -n /tmp/sum.txt) != 0 ]]; then
             for mask in $(cat /tmp/sum.txt); do route del -net ${mask} dev $DEVICE_VPN; done
@@ -174,7 +174,7 @@ fi
 
 if [[ $1 == down ]]; then
     checking_pre_down;
-    unset DEVICE_VPN URL_TO_LIST;
+    unset DEVICE_VPN PROTO_VPN URL_TO_LIST;
 fi
 
 exit 0
