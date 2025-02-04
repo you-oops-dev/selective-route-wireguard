@@ -27,17 +27,17 @@ else
     fi
     exit 1
 fi
-
-export URL_TO_LIST="https://raw.githubusercontent.com/naruto522ru/resolving-public/main/unblock_suite_ip.txt"
+export NAME_ACCOUNT_GITHUB="naruto522ru"
+export URL_TO_LIST="https://raw.githubusercontent.com/${NAME_ACCOUNT_GITHUB}/resolving-public/main/unblock_suite_ip.txt"
 export border_hoster=yes
 if [[ $border_hoster == yes ]]; then
-    export BORDER_hetzner="https://raw.githubusercontent.com/naruto522ru/ipranges/refs/heads/main/hetzner/ipv4_merged.txt"
-    export BORDER_ovh="https://raw.githubusercontent.com/naruto522ru/ipranges/refs/heads/main/ovh/ipv4_merged.txt"
-    export BORDER_digital_ocean="https://raw.githubusercontent.com/naruto522ru/ipranges/refs/heads/main/digitalocean/ipv4_merged.txt"
-    export BORDER_amazon="https://raw.githubusercontent.com/naruto522ru/ipranges/refs/heads/main/amazon/ipv4_merged.txt"
-    export BORDER_amazoncloudfront="https://raw.githubusercontent.com/naruto522ru/ipranges/refs/heads/main/amazoncloudfront/ipv4_merged.txt"
-    export BORDER_akamai="https://raw.githubusercontent.com/naruto522ru/ipranges/refs/heads/main/akamai/ipv4_merged.txt"
-    export BORDER_linode="https://raw.githubusercontent.com/naruto522ru/ipranges/refs/heads/main/linode/ipv4_merged.txt"
+    export BORDER_hetzner="https://raw.githubusercontent.com/${NAME_ACCOUNT_GITHUB}/ipranges/refs/heads/main/hetzner/ipv4_merged.txt"
+    export BORDER_ovh="https://raw.githubusercontent.com/${NAME_ACCOUNT_GITHUB}/ipranges/refs/heads/main/ovh/ipv4_merged.txt"
+    export BORDER_digital_ocean="https://raw.githubusercontent.com/${NAME_ACCOUNT_GITHUB}/ipranges/refs/heads/main/digitalocean/ipv4_merged.txt"
+    export BORDER_amazon="https://raw.githubusercontent.com/${NAME_ACCOUNT_GITHUB}/ipranges/refs/heads/main/amazon/ipv4_merged.txt"
+    export BORDER_amazoncloudfront="https://raw.githubusercontent.com/${NAME_ACCOUNT_GITHUB}/ipranges/refs/heads/main/amazoncloudfront/ipv4_merged.txt"
+    export BORDER_akamai="https://raw.githubusercontent.com/${NAME_ACCOUNT_GITHUB}/ipranges/refs/heads/main/akamai/ipv4_merged.txt"
+    export BORDER_linode="https://raw.githubusercontent.com/${NAME_ACCOUNT_GITHUB}/ipranges/refs/heads/main/linode/ipv4_merged.txt"
 fi
 
 
