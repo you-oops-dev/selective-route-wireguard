@@ -27,7 +27,7 @@ else
     fi
     exit 1
 fi
-export NAME_ACCOUNT_GITHUB="naruto522ru"
+export NAME_ACCOUNT_GITHUB="you-oops-dev"
 export URL_TO_LIST="https://raw.githubusercontent.com/${NAME_ACCOUNT_GITHUB}/resolving-public/main/unblock_suite_ip.txt"
 export border_hoster=yes
 if [[ $border_hoster == yes ]]; then
